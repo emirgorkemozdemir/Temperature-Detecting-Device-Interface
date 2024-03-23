@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <script>
+    setInterval(myTimer, 100);
+
+    function myTimer() {
+        var today = new Date();
+        var date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        var dateTime = date + ' ' + time;
+        document.getElementById("timespan").innerHTML = dateTime.toString();
+    }
+</script>
+
+    <meta name="viewport" content="width=device-width" />
+    <link href='/css/layoutv3.css' rel='stylesheet'>
+    <link href='/css/reg.css' rel='stylesheet'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="/lib/jquery/dist/jquery.js"></script>
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    
+             <div class="sidebar">
+            <div class="logo-details">
+                <img class="logo-img" src="/images/biocoder_transparent_logo.png" />
+            </div>
+
+            <a class="active" href="@Url.Action("MainPage","Main")">
+                <i class="fa-solid fa-house"></i>
+                Ana Sayfa
+            </a>
+
+            <a href="@Url.Action("UserInfos","Main")">
+                <i class="fa-solid fa-user"></i>
+                Kullanıcı Bilgilerim
+            </a>
+
+            <a href="@Url.Action("RedirectMeContactInfos","Main")">
+                <i class="fa-solid fa-address-book"></i>
+                Adres Bilgilerim
+            </a>
+
+            <a href="@Url.Action("PersonsMainPage","Main")">
+                <i class="fa-solid fa-address-card"></i>
+                İletişim Bilgilerim
+            </a>
+
+            <a href="@Url.Action("MyDevices","Main")">
+                <i class="fa-solid fa-microchip"></i>
+                Cihazlarım
+            </a>
+
+        <a href="@Url.Action("MyReports","Main")">
+            <i class="fa-solid fa-file"></i>
+            Raporlarım
+        </a>
+
+            <a href="@Url.Action("Logout","Main")">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Çıkış Yap
+            </a>
+        </div>
+
+        <div class="content">
+            <span class="date_time_span" id="timespan"></span>
+            @RenderBody()
+        </div>
+ 
+    
+
+</body>
+</html>
+

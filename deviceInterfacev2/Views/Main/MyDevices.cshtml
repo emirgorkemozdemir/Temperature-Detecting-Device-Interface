@@ -1,0 +1,97 @@
+﻿@model List<Dictionary<List<string>,List<double?>>>
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/layoutv3.cshtml";
+}
+
+<head>
+    <meta http-equiv="refresh" content="30">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/css/mainpage.css" />
+    <link rel="stylesheet" href="~/css/mydevices.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="/lib/jquery/dist/jquery.js"></script>
+    <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+    <style>
+
+    </style>
+</head>
+
+
+<body>
+    <a class="btn btn-warning" asp-controller="Main"
+       asp-action="LinkDeviceForUser">Cihaz ekle</a>
+    <div class="allDevices">
+        @foreach (var dict in Model)
+        {
+
+            <div class="deviceDiv">
+                
+            @{
+                var device_name = dict.ElementAt(0).Key[0].ToString();
+                var device_key = dict.ElementAt(0).Key[1].ToString();
+            }
+                <div class="deviceDivPartOne">
+                  
+                </div>
+
+                <div class="deviceDivPartTwo">
+
+
+
+                    <div class="deviceName">@device_name</div>
+
+                    <div>
+                        Sıcaklık 1 : @{
+                            string output = String.IsNullOrEmpty(dict.ElementAt(0).Value[0].ToString()) ? "Değer ölçülmedi" : dict.ElementAt(0).Value[0].ToString();
+                        } @output
+                    </div>
+                    <div>
+                        Sıcaklık 2 : @{
+                            string output1 = String.IsNullOrEmpty(dict.ElementAt(0).Value[1].ToString()) ? "Değer ölçülmedi" : dict.ElementAt(0).Value[6].ToString();
+                        } @output1
+                    </div>
+                    <div>
+                        Sıcaklık 3 : @{
+                            string output2 = String.IsNullOrEmpty(dict.ElementAt(0).Value[2].ToString()) ? "Değer ölçülmedi" : dict.ElementAt(0).Value[2].ToString();
+                        } @output2
+                    </div>
+                    <div>
+                        Sıcaklık 4 : @{
+                            string output3 = String.IsNullOrEmpty(dict.ElementAt(0).Value[3].ToString()) ? "Değer ölçülmedi" : dict.ElementAt(0).Value[3].ToString();
+                        } @output3
+                    </div>
+                    <div>
+                        Sıcaklık 5 : @{
+                            string output4 = String.IsNullOrEmpty(dict.ElementAt(0).Value[4].ToString()) ? "Değer ölçülmedi" : dict.ElementAt(0).Value[4].ToString();
+                        } @output4
+                    </div>
+                    <div>
+                        Sıcaklık 6 : @{
+                            string output5 = String.IsNullOrEmpty(dict.ElementAt(0).Value[5].ToString()) ? "Değer ölçülmedi" : dict.ElementAt(0).Value[5].ToString();
+                        } @output5
+                    </div>
+                    <div>
+                        Nem 1 : @{
+                            string output6 = String.IsNullOrEmpty(dict.ElementAt(0).Value[6].ToString()) ? "Değer ölçülmedi" : dict.ElementAt(0).Value[5].ToString();
+                        } @output6
+                    </div>
+                    <div>
+                        Nem 2 : @{
+                            string output7 = String.IsNullOrEmpty(dict.ElementAt(0).Value[7].ToString()) ? "Değer ölçülmedi" : dict.ElementAt(0).Value[6].ToString();
+                        } @output7
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+</body>

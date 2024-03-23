@@ -1,0 +1,45 @@
+﻿
+@*
+
+*@
+@{
+    Layout = null;
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/css/mailvalidate.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="/lib/jquery/dist/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+}
+
+
+@using (Html.BeginForm("LinkDeviceFirm", "User", FormMethod.Post))
+{
+
+    @Html.AntiForgeryToken()
+
+
+        <h1>Kodu giriniz</h1>
+
+
+
+        <section class="mailSection">
+            <h2>@ViewBag.mailValidationText</h2>
+            <input class="mailtbox" type="text" name="enteredcode" />
+            <input class="mybutton" type="submit" value="Onayla" />
+        <a href="@Url.Action("LinkDeviceIndividual","User")">Tekrar Kod Yolla</a>
+        </section>
+
+
+
+}
+
+<script>history.pushState(null, document.title, location.href); window.addEventListener('popstate', function (event) { history.pushState(null, document.title, location.href); });</script>
+<script>
+
+
+    if (location.href.includes('?')) {
+        history.pushState({}, null, location.href.split('?')[0]);
+    }
+</script>
+

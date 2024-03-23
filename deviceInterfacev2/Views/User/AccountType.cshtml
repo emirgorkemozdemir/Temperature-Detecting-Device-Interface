@@ -1,0 +1,44 @@
+﻿@model TableUser
+@*
+
+*@
+@{
+    Layout = null;
+
+}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/css/reg.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="/lib/jquery/dist/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+
+<body>
+
+    <section class="registerSection">
+
+        <article class="secpartone">
+            <img src="/images/biocoder_transparent_logo.png" />
+        </article>
+
+
+        @using (Html.BeginForm("AccountType", "User", FormMethod.Post, new { @class = "secparttwo" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <h1>Hesap Türü Seçiniz</h1>
+
+            <input type="submit" class="mybutton" name="btnInd" value="Bireysel Hesap Oluştur" />
+
+            <input type="submit" class="mybutton" name="btnFirm" value="Kurumsal Hesap Oluştur" />
+      
+
+        }
+    </section>
+
+
+</body>

@@ -1,0 +1,122 @@
+﻿@model TableContact
+@using AspNetCore.ReCaptcha
+@addTagHelper *, AspNetCore.ReCaptcha
+@*
+
+*@
+@{
+    Layout = null;
+
+}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/css/reg.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="/lib/jquery/dist/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+
+<body>
+
+    <section class="registerSection">
+
+        <article class="secpartone">
+            <img src="/images/biocoder_transparent_logo.png" />
+        </article>
+
+
+        @using (Html.BeginForm("FirmContact", "User", FormMethod.Post, new { @class = "secparttwo" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <h1>Kurumsal Kayıt</h1>
+
+            <div class="validationMessage">@ViewBag.validateError</div>
+
+            @Html.TextBoxFor(m=>m.ContactFirmName , new { placeholder = "Firma adını giriniz" , @class="textbox" } )
+
+            <div class="validationMessage">@ViewBag.validateErrorFirmName</div>
+
+            <select asp-for="ContactCity" id="cityDrop" class="dropdownmenu" asp-items="ViewBag.City"></select>
+
+            <select asp-for="ContactCounty" class="dropdownmenu" id="countyDrop" name="countyDrop"></select>
+
+            @Html.TextAreaFor(m=>m.ContactFirmAdress , new { placeholder = "Firma adresini giriniz" , @class="textbox" } )
+
+            <div class="validationMessage">@ViewBag.validateErrorFirmAdress</div>
+
+
+            @Html.TextBoxFor(m=>m.ContactTaxLoc , new { placeholder = "Vergi dairenizi giriniz" , @class="textbox"} )
+
+            <div class="validationMessage">@ViewBag.validateErrortaxloc</div>
+
+
+            @Html.TextBoxFor(m=>m.ContactTaxNo , new { placeholder = "Vergi numaranızı giriniz" , @class="textbox"} )
+
+            <div class="validationMessage">@ViewBag.validateErrortaxNo</div>
+
+
+            <input type="text" class="textbox" placeholder="Cihaz id numaranızı giriniz" name="DeviceUniqueKey" />
+            <div class="validationMessage">@ViewBag.validateErrorDeviceKey</div>
+
+
+            <section class="linksSection">
+                <a href='@this.Url.Action("Login", "User")'>Kayıtlıysanız giriş yapmak için tıklayınız.</a>
+            </section>
+
+            @Html.ReCaptcha()
+
+
+
+            <input type="submit" class="mybutton" itemid="mybtn"  value="Kayıt Ol" />
+
+        }
+    </section>
+
+
+</body>
+
+
+
+
+<script>history.pushState(null, document.title, location.href); window.addEventListener('popstate', function (event) { history.pushState(null, document.title, location.href); });</script>
+<script type="text/javascript">
+
+
+    function getCounties() {
+        $('#countyDrop').empty();
+
+
+        var ddlsource = $('#cityDrop').val();
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("GetCounty","User")",
+            data: { city_id: ddlsource },
+            success: function (data) {
+                $.each(data, function (i, field) {
+                    debugger;
+                    $("#countyDrop").append('<option value="' + field.countyId + '">' + field.countyName + '</option>');
+                });
+            },
+            error: function (req, status, error) {
+                console.log(msg);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        getCounties();
+
+        $('#cityDrop').change(function () {
+            getCounties();
+        });
+    });
+</script>
+
+
+
+

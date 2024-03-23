@@ -1,0 +1,113 @@
+﻿@model TableContact
+@using AspNetCore.ReCaptcha
+@addTagHelper *, AspNetCore.ReCaptcha
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/layoutv3.cshtml";
+
+}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/css/mainpage.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="/lib/jquery/dist/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+
+
+
+
+    @using (Html.BeginForm("FirmContactInfos", "Main", FormMethod.Post, new { @class = "formSection" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <h1>Adres Bilgilerim</h1>
+
+        <div class="validationMessage">@ViewBag.validateError</div>
+
+        @Html.HiddenFor(m=>m.ContactId)
+        @Html.HiddenFor(m=>m.ContactUserId)
+        @Html.HiddenFor(m=>m.ContactCounty)
+        
+
+        @Html.TextBoxFor(m=>m.ContactFirmName , new { placeholder = "Firma adını giriniz" , @class="textbox" } )
+
+        <div class="validationMessage">@ViewBag.validateErrorFirmName</div>
+
+        <select asp-for="ContactCity" id="cityDrop" class="dropdownmenu" asp-items="ViewBag.City"></select>
+
+        <select asp-for="ContactCounty" class="dropdownmenu" id="countyDrop"  name="countyDrop"></select>
+
+        @Html.TextAreaFor(m=>m.ContactFirmAdress , new { placeholder = "Firma adresini giriniz" , @class="textbox" } )
+
+        <div class="validationMessage">@ViewBag.validateErrorFirmAdress</div>
+
+
+        @Html.TextBoxFor(m=>m.ContactTaxLoc , new { placeholder = "Vergi dairenizi giriniz" , @class="textbox"} )
+
+        <div class="validationMessage">@ViewBag.validateErrortaxloc</div>
+
+
+        @Html.TextBoxFor(m=>m.ContactTaxNo , new { placeholder = "Vergi numaranızı giriniz" , @class="textbox"} )
+
+        <div class="validationMessage">@ViewBag.validateErrortaxNo</div>
+
+        @Html.ReCaptcha()
+
+        <input type="submit" class="mybutton" value="Bilgilerimi Güncelle" />
+
+    }
+
+
+
+</body>
+
+
+<script>history.pushState(null, document.title, location.href); window.addEventListener('popstate', function (event) { history.pushState(null, document.title, location.href); });</script>
+<script type="text/javascript">
+
+
+    function getCounties() {
+        $('#countyDrop').empty();
+
+
+        var ddlsource = $('#cityDrop').val();
+        var selected_county_id = $('#ContactCounty').val();
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("GetCounty","User")",
+            data: { city_id: ddlsource },
+            success: function (data) {
+                $.each(data, function (i, field) {
+                    if (field.countyId == selected_county_id) {
+                         $("#countyDrop").append('<option value="' + field.countyId + '" selected>' + field.countyName + '</option>');
+                    }
+                    else{
+                        $("#countyDrop").append('<option value="' + field.countyId + '">' + field.countyName + '</option>');
+                    }
+                });
+            },
+            error: function (req, status, error) {
+                console.log(msg);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        getCounties();
+
+        $('#cityDrop').change(function () {
+            getCounties();
+        });
+    });
+</script>

@@ -1,0 +1,99 @@
+﻿@model TableUser
+@using AspNetCore.ReCaptcha
+@addTagHelper *, AspNetCore.ReCaptcha
+@*
+
+*@
+@{
+    Layout = null;
+
+}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/css/reg.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="/lib/jquery/dist/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+
+<body>
+
+    <section class="registerSection">
+
+        <article class="secpartone">
+            <img src="/images/biocoder_transparent_logo.png" />
+        </article>
+
+
+        @using (Html.BeginForm("Register", "User", FormMethod.Post, new { @class = "secparttwo" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <h1>Kayıt Ol</h1>
+
+            <div class="validationMessage">@ViewBag.validateError</div>
+
+            @Html.TextBoxFor(m=>m.UserMail , new { placeholder = "Mail adresinizi giriniz" , @class="textbox" } )
+            @Html.ValidationMessageFor(m=>m.UserMail)
+
+
+            @Html.PasswordFor(m=>m.UserPassword , new {  placeholder = "Şifrenizi giriniz" , @class="textbox"} )
+            @Html.ValidationMessageFor(m=>m.UserPassword)
+
+            <input type="password" placeholder="Şifrenizi tekrar giriniz" class="textbox" name="tboxControl" />
+
+            <section class="linksSection">
+                <label><input type="checkbox" name="link1" id="link1"> Gizlilik ve Güvenlik<a href='@this.Url.Action("SecurityPolicy", "User")' target='_blank'> tıklayınız.</a></label>
+                <label><input type="checkbox" name="link2" id="link2"> Sözleşme 2<a href='#' target='_blank'> tıklayınız.</a></label>
+                <label><input type="checkbox" name="link3" id="link3"> Sözleşme 3<a href='#' target='_blank'> tıklayınız.</a></label>
+                <a href='@this.Url.Action("Login", "User")'>Kayıtlıysanız giriş yapmak için tıklayınız.</a>
+            </section>
+
+            @Html.ReCaptcha()
+
+            <input type="submit" class="mybutton" value="Kayıt Ol" />
+
+        }
+    </section>
+
+
+</body>
+
+<script type="text/javascript">
+    function getCounties() {
+        $('#countyDrop').empty();
+
+
+        var ddlsource = $('#cityDrop').val();
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("GetCounty","User")",
+            data: { city_id: ddlsource },
+            success: function (data) {
+                $.each(data, function (i, field) {
+                    debugger;
+                    $("#countyDrop").append('<option value="' + field.countyId + '">' + field.countyName + '</option>');
+                });
+            },
+            error: function (req, status, error) {
+                console.log(msg);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        getCounties();
+
+        $('#cityDrop').change(function () {
+            getCounties();
+        });
+    });
+</script>
+
+
+
+

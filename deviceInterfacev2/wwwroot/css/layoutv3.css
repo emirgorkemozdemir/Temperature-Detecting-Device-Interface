@@ -1,0 +1,131 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root {
+    --black: #1e1e1e;
+    --white: #fafafa;
+    --main: #B3B3B3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100vh;
+    font-size: 18px !important;
+    width: 100vw;
+}
+
+
+
+.sidebar {
+    margin: 0;
+    padding: 0;
+    background-color: #f1f1f1;
+    width:15vw !important;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+    .sidebar .logo-details {
+        height: 60px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+.logo-details .logo-img {
+    font-size: 30px;
+    color: #fff;
+    height: 50px;
+    min-width: 78px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.sidebar a {
+    display: block;
+    color: #18628F;
+    padding: 16px;
+    text-decoration: none !important;
+}
+
+    .sidebar a.active {
+        background-color: #04AA6D;
+        color: white;
+    }
+
+    .sidebar a:hover:not(.active) {
+        background-color: #18628F;
+        color: white;
+    }
+
+div.content {
+    position:fixed;
+    top:0;
+    left:30vh !important;
+    width: 85vw !important;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content .date_time_span {
+    position: absolute;
+    right: 30px !important;
+    top: 15px;
+}
+
+.dropdownmenu {
+    width: 25em;
+    margin-top: 2.2em;
+    outline: none !important;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: groove;
+}
+
+
+
+
+@media screen and (max-width: 1800px) {
+    .sidebar {
+        width: 100% !important;
+        height: auto;
+        position: absolute;
+        top:0;
+        left:0;
+    }
+
+        .sidebar a {
+            float: left;
+        }
+
+    div.content {
+        margin-left: 0;
+        position:absolute;
+        left:0 !important;
+        width:100% !important;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .sidebar a {
+        text-align: center;
+        float: none;
+    }
+}

@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link href='/css/layoutv2.css' rel='stylesheet'>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+    <div class="sidebar close">
+        <div class="logo-details">
+            <img class="logo-img" src="/images/biocoder_logo.jpg.jpg" />
+        </div>
+
+        <ul class="nav-links">
+          
+
+            <li>
+                <a href="@this.Url.Action("UserInfos","Main")">
+                    <i class='bx bxs-user'></i>
+                    <span class="link_name">Kullanıcı Bilgilerim</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="@this.Url.Action("UserInfos","Main")">Kullanıcı Bilgilerim</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-map-alt'></i>
+                    <span class="link_name">Adres Bilgilerim</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="#">Adres Bilgilerim</a></li>
+                </ul>
+            </li>
+
+
+            <li>
+                <a href="#">
+                    <i class='bx bxs-contact'></i>
+                    <span class="link_name">İletişim Bilgilerim</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="#">İletişim Bilgilerim</a></li>
+                </ul>
+            </li>
+
+
+
+            <li>
+                <a href="#">
+                    <i class='bx bx-cog'></i>
+                    <span class="link_name">Ayarlar</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="#">Ayarlar</a></li>
+                </ul>
+            </li>
+
+
+            <li>
+                <div class="profile-details">
+                    <a href="@this.Url.Action("Logout","Main")">
+                        <i class='bx bx-log-out'></i>
+                        <span class="link_name">Çıkış Yap</span>
+                    </a>
+
+                </div>
+            </li>
+
+
+        </ul>
+
+
+    </div>
+
+    <section class="home-section">
+        @RenderBody()
+
+        <div class="home-content">
+            <i class='bx bx-menu'></i>
+
+        </div>
+    </section>
+
+
+</body>
+</html>
+
+<script>
+    let arrow = document.querySelectorAll(".arrow");
+    for (var i = 0; i < arrow.length; i++) {
+        arrow[i].addEventListener("click", (e) => {
+            let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+            arrowParent.classList.toggle("showMenu");
+        });
+    }
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".bx-menu");
+    console.log(sidebarBtn);
+    sidebarBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("close");
+    });
+</script>
+
+<script>
+    setInterval(myTimer, 1000);
+
+    function myTimer() {
+        var today = new Date();
+        var date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        var dateTime = date + ' ' + time;
+        document.getElementById("timespan").innerHTML = dateTime.toString();
+    }
+</script>

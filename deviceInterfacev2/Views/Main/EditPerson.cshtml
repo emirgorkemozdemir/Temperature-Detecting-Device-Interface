@@ -1,0 +1,62 @@
+﻿@model TablePerson
+@using AspNetCore.ReCaptcha
+@addTagHelper *, AspNetCore.ReCaptcha
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/layoutv3.cshtml";
+
+}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/css/mainpage.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="/lib/jquery/dist/jquery.js"></script>
+    <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+
+    @using (Html.BeginForm("EditPerson", "Main", FormMethod.Post, new { @class = "formSection" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <h1>Kişi Bilgileri</h1>
+
+        <div class="validationMessage">@ViewBag.validateError</div>
+
+        @Html.HiddenFor(m=>m.PersonId)
+        @Html.HiddenFor(m=>m.PersonUserId)
+        @Html.HiddenFor(m=>m.PersonContactId)
+
+        @Html.TextBoxFor(m=>m.PersonName , new { placeholder = "İsminizi giriniz" , @class="textbox" } )
+       
+
+        @Html.TextBoxFor(m=>m.PersonSurname , new { placeholder = "Soy isminizi giriniz" , @class="textbox" } )
+      
+
+        @Html.TextBoxFor(m=>m.PersonMail , new { placeholder = "Mail adresinizi giriniz" , @class="textbox" } )
+       
+
+        @Html.TextBoxFor(m=>m.PersonPhone , new { placeholder = "Telefon numaranızı giriniz" , @class="textbox" } )
+       
+
+        @Html.ReCaptcha()
+
+        <input type="submit" class="mybutton" id="mysubmit" value="Bilgileri Güncelle" />
+
+
+    }
+</body>
+
+
+
+
+

@@ -1,0 +1,55 @@
+﻿@model TableUser
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+
+}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/css/log.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="/lib/jquery/dist/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+
+
+<body>
+
+    <section class="registerSection">
+
+        <article class="secpartone">
+            <img src="/images/biocoder_transparent_logo.png" />
+        </article>
+
+
+        @using (Html.BeginForm("Login", "User", FormMethod.Post, new { @class = "secparttwo" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <h1>Giriş Yap</h1>
+
+            <div class="validationMessage">@ViewBag.validateError</div>
+            <div class="validationMessage">@ViewBag.myidtry</div>
+
+            @Html.TextBoxFor(m=>m.UserMail , new { placeholder = "Mail adresinizi giriniz" , @class="textbox ftbox" } )
+            @Html.ValidationMessageFor(m=>m.UserMail)
+
+
+            @Html.PasswordFor(m=>m.UserPassword , new {  placeholder = "Şifrenizi giriniz" , @class="textbox"} )
+            @Html.ValidationMessageFor(m=>m.UserPassword)
+
+            <a class="goreglink" href='@this.Url.Action("Register", "User")'>Kayıt olmak için tıklayınız.</a>
+            <a class="goreglink" href='@this.Url.Action("ForgotPasswordSendMailMiddle", "User")'>Şifremi unuttum</a>
+        
+            <input type="submit" class="mybutton" value="Giriş Yap" />
+
+        }
+    </section>
+
+
+</body>

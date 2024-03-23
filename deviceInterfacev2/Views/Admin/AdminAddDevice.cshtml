@@ -1,0 +1,45 @@
+﻿@model TableDevice
+@using AspNetCore.ReCaptcha
+@addTagHelper *, AspNetCore.ReCaptcha
+@*
+
+*@
+@{
+    Layout = "~/Views/Shared/adminlayout.cshtml"; ;
+
+}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="/lib/jquery/dist/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+
+<body>
+
+
+
+        @using (Html.BeginForm("AdminAddDevice", "Admin", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <h1>Cihaz Ekle</h1>
+
+            @Html.TextBoxFor(m=>m.DeviceUniqeKey , new { placeholder = "Cihaz ID giriniz" , @class="form-control" } )
+            @Html.ValidationMessageFor(m=>m.DeviceUniqeKey)
+
+
+            @Html.ReCaptcha()
+
+        <input type="submit" class="btn btn-danger" value="Cihaz Ekle" />
+
+        }
+
+</body>
+
+
+
+

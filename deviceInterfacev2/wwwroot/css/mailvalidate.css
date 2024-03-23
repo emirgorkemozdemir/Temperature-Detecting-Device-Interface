@@ -1,0 +1,111 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root {
+    --black: #1e1e1e;
+    --white: #fafafa;
+    --main: #B3B3B3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 18px !important;
+    background-color: var(--white);
+}
+
+
+h1 {
+    font-size: 2.4em !important;
+    font-weight: bolder;
+    color: var(--black);
+}
+
+h2 {
+    font-size: 1.4em !important;
+    font-weight: bolder;
+    color: var(--black);
+}
+
+.mailSection{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.mailtbox {
+    margin-top: 3em;
+    width: 25em;
+    text-align: center;
+    outline: none !important;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: groove;
+}
+
+
+
+.mybutton {
+    margin-top: 3em;
+    width: 15em;
+    height: 3em;
+    background-color: var(--main);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: var(--black);
+    font-size: 1em;
+    transition: 0.5s;
+}
+
+    .mybutton:hover {
+        background: transparent;
+        border: 1px solid var(--black);
+        color: var(--black);
+
+    }
+
+@media screen and (max-width: 780px) {
+    body {
+        font-size: 15px !important;
+    }
+}
+
+
+@media screen and (max-width: 690px) {
+    body {
+        font-size: 13px !important;
+    }
+}
+
+
+@media screen and (max-width: 540px) {
+    body {
+        font-size: 11px !important;
+    }
+}
+
+
+@media screen and (max-width: 460px) {
+    body {
+        font-size: 9px !important;
+    }
+}
+
+
+@media screen and (max-width: 380px) {
+    body {
+        font-size: 7px !important;
+    }
+}
+

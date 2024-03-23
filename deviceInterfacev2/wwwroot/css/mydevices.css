@@ -1,0 +1,158 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root {
+    --black: #1e1e1e;
+    --white: #fafafa;
+    --main: #B3B3B3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+body{
+    height:100vh;
+}
+
+
+.allDevices {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    grid-row-gap: 3em;
+}
+
+.deviceDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 30em;
+    height: 15em;
+    border-top-right-radius: 5%;
+    border-bottom-right-radius: 5%;
+    -webkit-box-shadow: 0px 1px 10px 0px rgba(133,133,133,1);
+    -moz-box-shadow: 0px 1px 10px 0px rgba(133,133,133,1);
+    box-shadow: 0px 1px 10px 0px rgba(133,133,133,1);
+}
+
+.deviceDivPartOne {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #03c67e, #04c980, #04cb81, #05ce83, #06d185);
+    width: 12em;
+    height: 100%;
+}
+
+.deviceDivPartTwo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5em;
+    width: 28em;
+    height: 100%;
+}
+
+    .deviceDivPartTwo .deviceName {
+        font-size: 1.3em;
+        font-weight: 500;
+    }
+
+
+@media screen and (max-width: 1400px) {
+    body {
+        font-size: 15px !important;
+    }
+
+    .allDevices {
+        margin-top:30em;
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media screen and (max-width: 900px) {
+    body {
+        font-size: 15px !important;
+    }
+
+    .allDevices {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .allDevices {
+        margin-top: 35em;
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+
+@media screen and (max-width: 690px) {
+    body {
+        font-size: 13px !important;
+    }
+
+    .allDevices {
+        grid-template-columns: repeat(1, 1fr);
+    }  
+}
+
+
+@media screen and (max-width: 540px) {
+    body {
+        font-size: 11px !important;
+    }
+    .allDevices {
+        margin-top: 25em;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+}
+
+
+@media screen and (max-width: 460px) {
+    body {
+        font-size: 9px !important;
+    }
+
+    .allDevices {
+        margin-top: 15em;
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+
+@media screen and (max-width: 400px) {
+    body {
+        font-size: 9px !important;
+    }
+
+    .content{
+        top:0 !important;
+    }
+
+    .allDevices {
+       margin-top:73em;
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media screen and (max-width: 330px) {
+    body {
+        font-size: 7px !important;
+    }
+
+    .content {
+        top: 0 !important;
+    }
+
+    .allDevices {
+        margin-top: 95em;
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

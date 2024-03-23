@@ -1,0 +1,69 @@
+﻿@model TablePerson
+@using AspNetCore.ReCaptcha
+@addTagHelper *, AspNetCore.ReCaptcha
+@*
+
+*@
+@{
+    Layout = null;
+
+}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/css/reg.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="/lib/jquery/dist/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+
+<body>
+
+    <section class="registerSection">
+
+        <article class="secpartone">
+            <img src="/images/biocoder_transparent_logo.png" />
+        </article>
+
+
+        @using (Html.BeginForm("FirmPersonInfos", "User", FormMethod.Post, new { @class = "secparttwo" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <h1>Kişi Bilgileri</h1>
+
+            <div class="validationMessage">@ViewBag.validateError</div>
+
+            <h2>1 adet telefon numarası , isim ve soy isim girmeniz zorunludur.</h2>
+            <h2>Kişi iletişim bilgileriniz bundan önce doldurduğunuz sayfalarda alınan mail , isim , soy isim gibi bilgilerden oluşacaktır.</h2>
+            <h2>Gerektiğinde sizinle iletişime geçmek bu iletişim bilgilerini kullanacağız.</h2>
+            <h2>İsterseniz daha sonra Kişi İletişim Bilgileri kısmından 2 tane daha kişi bilgisi ekleyebilirsiniz. </h2>
+
+            @Html.TextBoxFor(m=>m.PersonName , new { placeholder = "İsminizi giriniz" , @class="textbox"} )
+            <div class="validationMessage">@ViewBag.validateErrorName</div>
+
+            @Html.TextBoxFor(m=>m.PersonSurname , new { placeholder = "Soy isminizi giriniz" , @class="textbox"} )
+            <div class="validationMessage">@ViewBag.validateErrorSurname</div>
+
+            @Html.TextBoxFor(m=>m.PersonPhone , new { placeholder = "Telefon numaranızı giriniz" , @class="textbox"} )
+            <div class="validationMessage">@ViewBag.validateErrorPhone</div>
+
+
+            @Html.ReCaptcha()
+
+
+
+            <input type="submit" class="mybutton" value="Kayıt Ol" />
+
+        }
+    </section>
+
+
+</body>
+
+
+
+
+<script>history.pushState(null, document.title, location.href); window.addEventListener('popstate', function (event) { history.pushState(null, document.title, location.href); });</script>
